@@ -18,9 +18,7 @@ public class Membre  implements java.io.Serializable {
      private String tel;
      private Date datenaissance;
      private String motdepasse;
-     private Client client;
      private Adresse adresse;
-     private Employe employe;
 
     public Membre() {
     }
@@ -29,7 +27,7 @@ public class Membre  implements java.io.Serializable {
     public Membre(BigDecimal idmembre) {
         this.idmembre = idmembre;
     }
-    public Membre(BigDecimal idmembre, String nomfamille, String prenom, String courriel, String tel, Date datenaissance, String motdepasse, Client client, Adresse adresse, Employe employe) {
+    public Membre(BigDecimal idmembre, String nomfamille, String prenom, String courriel, String tel, Date datenaissance, String motdepasse, Adresse adresse) {
        this.idmembre = idmembre;
        this.nomfamille = nomfamille;
        this.prenom = prenom;
@@ -37,9 +35,7 @@ public class Membre  implements java.io.Serializable {
        this.tel = tel;
        this.datenaissance = datenaissance;
        this.motdepasse = motdepasse;
-       this.client = client;
        this.adresse = adresse;
-       this.employe = employe;
     }
    
     public BigDecimal getIdmembre() {
@@ -91,26 +87,12 @@ public class Membre  implements java.io.Serializable {
     public void setMotdepasse(String motdepasse) {
         this.motdepasse = motdepasse;
     }
-    public Client getClient() {
-        return this.client;
-    }
-    
-    public void setClient(Client client) {
-        this.client = client;
-    }
     public Adresse getAdresse() {
         return this.adresse;
     }
     
     public void setAdresse(Adresse adresse) {
         this.adresse = adresse;
-    }
-    public Employe getEmploye() {
-        return this.employe;
-    }
-    
-    public void setEmploye(Employe employe) {
-        this.employe = employe;
     }
 
 
