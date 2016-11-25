@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 18 nov. 2016 16:55:43 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="locafilm.Employe" table="EMPLOYE" schema="LOCAFILM" optimistic-lock="version">
+        <id name="idmembre" type="big_decimal">
+            <column name="IDMEMBRE" precision="22" scale="0" />
+            <generator class="foreign">
+                <param name="property">membre</param>
+            </generator>
+        </id>
+        <one-to-one name="membre" class="locafilm.Membre" constrained="true"></one-to-one>
+        <property name="matricule" type="java.lang.Integer">
+            <column name="MATRICULE" precision="8" scale="0" unique="true" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 18 nov. 2016 16:55:43 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="locafilm.Equipetournage" table="EQUIPETOURNAGE" schema="LOCAFILM" optimistic-lock="version">
+        <id name="idpersonne" type="big_decimal">
+            <column name="IDPERSONNE" precision="22" scale="0" />
+            <generator class="assigned" />
+        </id>
+        <property name="nom" type="string">
+            <column name="NOM" length="70" />
+        </property>
+        <property name="datenaissance" type="date">
+            <column name="DATENAISSANCE" length="7" />
+        </property>
+        <property name="lieu" type="string">
+            <column name="LIEU" length="70" />
+        </property>
+        <property name="photo" type="string">
+            <column name="PHOTO" />
+        </property>
+        <property name="bio" type="blob">
+            <column name="BIO" />
+        </property>
+        <set name="roles" table="ROLE" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDPERSONNE" precision="22" scale="0" not-null="true" />
+            </key>
+            <one-to-many class="locafilm.Role" />
+        </set>
+        <set name="films" table="FILM" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDREALISATEUR" precision="22" scale="0" />
+            </key>
+            <one-to-many class="locafilm.Film" />
+        </set>
+    </class>
+</hibernate-mapping>

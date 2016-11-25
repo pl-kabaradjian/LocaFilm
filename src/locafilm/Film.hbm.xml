@@ -1,0 +1,73 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 18 nov. 2016 16:55:43 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="locafilm.Film" table="FILM" schema="LOCAFILM" optimistic-lock="version">
+        <id name="idfilm" type="big_decimal">
+            <column name="IDFILM" precision="22" scale="0" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="equipetournage" class="locafilm.Equipetournage" fetch="select">
+            <column name="IDREALISATEUR" precision="22" scale="0" />
+        </many-to-one>
+        <property name="titre" type="string">
+            <column name="TITRE" length="90" />
+        </property>
+        <property name="annee" type="big_decimal">
+            <column name="ANNEE" precision="22" scale="0" />
+        </property>
+        <property name="langue" type="string">
+            <column name="LANGUE" length="40" />
+        </property>
+        <property name="duree" type="big_decimal">
+            <column name="DUREE" precision="22" scale="0" />
+        </property>
+        <property name="resume" type="blob">
+            <column name="RESUME" />
+        </property>
+        <property name="poster" type="string">
+            <column name="POSTER" />
+        </property>
+        <set name="copies" table="COPIE" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDFILM" precision="22" scale="0" not-null="true" />
+            </key>
+            <one-to-many class="locafilm.Copie" />
+        </set>
+        <set name="annonces" table="ANNONCE" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDFILM" precision="22" scale="0" not-null="true" />
+            </key>
+            <one-to-many class="locafilm.Annonce" />
+        </set>
+        <set name="roles" table="ROLE" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDFILM" precision="22" scale="0" not-null="true" />
+            </key>
+            <one-to-many class="locafilm.Role" />
+        </set>
+        <set name="genres" table="GENREFILM" inverse="false" lazy="true" fetch="select">
+            <key>
+                <column name="IDFILM" precision="22" scale="0" not-null="true" />
+            </key>
+            <many-to-many entity-name="locafilm.Genre">
+                <column name="IDGENRE" precision="22" scale="0" not-null="true" />
+            </many-to-many>
+        </set>
+        <set name="payses" table="FILMPAYS" inverse="false" lazy="true" fetch="select">
+            <key>
+                <column name="IDFILM" precision="22" scale="0" not-null="true" />
+            </key>
+            <many-to-many entity-name="locafilm.Pays">
+                <column name="IDPAYS" precision="22" scale="0" not-null="true" />
+            </many-to-many>
+        </set>
+        <set name="scenaristes" table="SCENARISTE" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDFILM" precision="22" scale="0" not-null="true" />
+            </key>
+            <one-to-many class="locafilm.Scenariste" />
+        </set>
+    </class>
+</hibernate-mapping>

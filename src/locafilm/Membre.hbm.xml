@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 18 nov. 2016 16:55:43 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="locafilm.Membre" table="MEMBRE" schema="LOCAFILM" optimistic-lock="version">
+        <id name="idmembre" type="big_decimal">
+            <column name="IDMEMBRE" precision="22" scale="0" />
+            <generator class="assigned" />
+        </id>
+        <property name="nomfamille" type="string">
+            <column name="NOMFAMILLE" length="50" />
+        </property>
+        <property name="prenom" type="string">
+            <column name="PRENOM" length="50" />
+        </property>
+        <property name="courriel" type="string">
+            <column name="COURRIEL" length="65" unique="true" />
+        </property>
+        <property name="tel" type="string">
+            <column name="TEL" length="25" />
+        </property>
+        <property name="datenaissance" type="date">
+            <column name="DATENAISSANCE" length="7" />
+        </property>
+        <property name="motdepasse" type="string">
+            <column name="MOTDEPASSE" length="50" />
+        </property>
+        <one-to-one name="client" class="locafilm.Client"></one-to-one>
+        <one-to-one name="adresse" class="locafilm.Adresse"></one-to-one>
+        <one-to-one name="employe" class="locafilm.Employe"></one-to-one>
+    </class>
+</hibernate-mapping>

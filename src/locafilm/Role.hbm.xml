@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 18 nov. 2016 16:55:43 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="locafilm.Role" table="ROLE" schema="LOCAFILM" optimistic-lock="version">
+        <id name="idrole" type="big_decimal">
+            <column name="IDROLE" precision="22" scale="0" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="equipetournage" class="locafilm.Equipetournage" fetch="select">
+            <column name="IDPERSONNE" precision="22" scale="0" not-null="true" />
+        </many-to-one>
+        <many-to-one name="film" class="locafilm.Film" fetch="select">
+            <column name="IDFILM" precision="22" scale="0" not-null="true" />
+        </many-to-one>
+        <property name="personnage" type="string">
+            <column name="PERSONNAGE" length="70" />
+        </property>
+    </class>
+</hibernate-mapping>

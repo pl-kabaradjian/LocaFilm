@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 18 nov. 2016 16:55:43 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="locafilm.Copie" table="COPIE" schema="LOCAFILM" optimistic-lock="version">
+        <id name="numerocopie" type="big_decimal">
+            <column name="NUMEROCOPIE" precision="22" scale="0" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="film" class="locafilm.Film" fetch="select">
+            <column name="IDFILM" precision="22" scale="0" not-null="true" />
+        </many-to-one>
+        <set name="locations" table="LOCATION" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="NUMEROCOPIE" precision="22" scale="0" not-null="true" />
+            </key>
+            <one-to-many class="locafilm.Location" />
+        </set>
+    </class>
+</hibernate-mapping>

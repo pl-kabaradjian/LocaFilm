@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 18 nov. 2016 16:55:43 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="locafilm.Forfait" table="FORFAIT" schema="LOCAFILM" optimistic-lock="version">
+        <id name="idforfait" type="big_decimal">
+            <column name="IDFORFAIT" precision="22" scale="0" />
+            <generator class="assigned" />
+        </id>
+        <property name="nom" type="string">
+            <column name="NOM" />
+        </property>
+        <property name="cout" type="big_decimal">
+            <column name="COUT" precision="22" scale="0" not-null="true" />
+        </property>
+        <property name="locationmax" type="big_decimal">
+            <column name="LOCATIONMAX" precision="22" scale="0" />
+        </property>
+        <property name="dureemax" type="big_decimal">
+            <column name="DUREEMAX" precision="22" scale="0" />
+        </property>
+        <set name="clients" table="CLIENT" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDFORFAIT" precision="22" scale="0" not-null="true" />
+            </key>
+            <one-to-many class="locafilm.Client" />
+        </set>
+    </class>
+</hibernate-mapping>
