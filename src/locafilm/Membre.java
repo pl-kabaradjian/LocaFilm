@@ -23,7 +23,6 @@ public class Membre  implements java.io.Serializable {
     public Membre() {
     }
 
-	
     public Membre(BigDecimal idmembre) {
         this.idmembre = idmembre;
     }
@@ -95,5 +94,3 @@ public class Membre  implements java.io.Serializable {
         this.adresse = adresse;
     }
 }
-
-
