@@ -24,8 +24,8 @@ public class DAOFilm {
         List result = q.list();
         List<Film> films = (List<Film>) result;
 
-        s.close();
-        factory.close();
+        //s.close();
+        //factory.close();
 
         return films;
     }

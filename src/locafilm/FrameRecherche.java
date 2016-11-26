@@ -6,6 +6,7 @@
 package locafilm;
 
 import java.util.List;
+import javax.swing.DefaultListModel;
 
 /**
  *
@@ -171,20 +172,23 @@ public class FrameRecherche extends javax.swing.JFrame {
     }//GEN-LAST:event_bouton_louerActionPerformed
 
     private void bouton_chercherActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bouton_chercherActionPerformed
-    String recherche = textField_critere.getText();
-    String critere = comboBox_critere.getSelectedItem().toString();
-    List<Film> listFilm=Facade.getListeFilm();
-    for(Film f : listFilm)
-    {
-        if(critere=="titre")
-        {
-            if(f.getTitre()==recherche)
-            {
-                list_resultat.setName(f.getTitre());
+        System.out.println("Appui");
+        String recherche = textField_critere.getText();
+        String critere = comboBox_critere.getSelectedItem().toString();
+        List<Film> listFilm = Facade.getListeFilm();
+        
+        DefaultListModel listModel = new DefaultListModel();
+        jList1.setModel(listModel);
+        
+        listModel.addElement("TEST");
+        
+        for (Film f : listFilm) {
+            if (critere == "titre") {
+                if (f.getTitre() == recherche) {
+                    listModel.addElement(f.getTitre());
+                }
             }
         }
-    }
-    
     }//GEN-LAST:event_bouton_chercherActionPerformed
 
     /**

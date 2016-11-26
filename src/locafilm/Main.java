@@ -16,7 +16,9 @@ public class Main {
  
     public static void main(String [] args){
        JFrame window_login = new LoginWindow();
+       JFrame f2 = new FrameRecherche();
        window_login.show();
+       f2.show();
 
        Client c = DaoClient.getClientByEmail("sags3@gmail.ca");
        System.out.println(c.getMotdepasse());
