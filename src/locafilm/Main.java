@@ -17,13 +17,10 @@ public class Main {
     public static void main(String [] args){
        JFrame window_login = new LoginWindow();
        window_login.show();
-       
-       List<Film> films = DAOFilm.getAllFilm();
-       System.out.println(films.size() + " films trouvés:" );
-       for ( Film f : films ) {
-            //Film f = iter.next();
-            System.out.println("Film :"+ f.getTitre() + " " + ((Genre)f.getGenres().toArray()[0]).getGenre() );
-        }
-       System.out.println("\n----\n");
-    } 
+
+       Client c = DaoClient.getClientByEmail("sags3@gmail.ca");
+       System.out.println(c.getMotdepasse());
+ //      factory.close();
+    }
+    
 }

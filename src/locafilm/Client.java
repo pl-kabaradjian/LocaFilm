@@ -14,7 +14,6 @@ public class Client extends Membre implements java.io.Serializable {
 
 
      private BigDecimal idmembre;
-     private Membre membre;
      private Forfait forfait;
      private Infocredit infocredit;
      private Set locations = new HashSet(0);
@@ -24,7 +23,7 @@ public class Client extends Membre implements java.io.Serializable {
 
 	
     public Client(BigDecimal idmembre, String nomfamille, String prenom, String courriel, String tel, Date datenaissance, String motdepasse, Adresse adresse, Forfait forfait) {
-        super(idmembre, nomfamille, prenom, courriel, tel, datenaissance, motdepasse, adresse);;
+        super(idmembre, nomfamille, prenom, courriel, tel, datenaissance, motdepasse, adresse);
         this.forfait = forfait;
     }
     public Client(BigDecimal idmembre, String nomfamille, String prenom, String courriel, String tel, Date datenaissance, String motdepasse, Adresse adresse, Forfait forfait, Infocredit infocredit, Set locations) {
@@ -33,21 +32,15 @@ public class Client extends Membre implements java.io.Serializable {
        this.infocredit = infocredit;
        this.locations = locations;
     }
-   
+   @Override
     public BigDecimal getIdmembre() {
         return this.idmembre;
     }
-    
+    @Override
     public void setIdmembre(BigDecimal idmembre) {
         this.idmembre = idmembre;
     }
-    public Membre getMembre() {
-        return this.membre;
-    }
-    
-    public void setMembre(Membre membre) {
-        this.membre = membre;
-    }
+   
     public Forfait getForfait() {
         return this.forfait;
     }
