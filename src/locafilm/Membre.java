@@ -94,10 +94,6 @@ public class Membre  implements java.io.Serializable {
     public void setAdresse(Adresse adresse) {
         this.adresse = adresse;
     }
-
-
-
-
 }
 
 
