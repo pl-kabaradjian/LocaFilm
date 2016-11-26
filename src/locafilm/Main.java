@@ -17,24 +17,13 @@ public class Main {
     public static void main(String [] args){
        JFrame window_login = new LoginWindow();
        window_login.show();
-       //final Configuration configuration = new Configuration().configure();
-       final SessionFactory factory = HibernateUtil.getSessionFactory();
-       final Session s = factory.openSession();
        
-       Query q = s.createSQLQuery("SELECT * FROM Film").addEntity(Film.class);
-       List result = q.list();
-       List<Film> films = (List<Film>)result;
-       
+       List<Film> films = DAOFilm.getAllFilm();
        System.out.println(films.size() + " films trouvés:" );
-       System.out.println(films);
-       System.out.println(result.get(0));
        for ( Film f : films ) {
             //Film f = iter.next();
-            System.out.println("Film :"+ f.getTitre() );
+            System.out.println("Film :"+ f.getTitre() + " " + ((Genre)f.getGenres().toArray()[0]).getGenre() );
         }
        System.out.println("\n----\n");
-       s.close();
-       factory.close();
-    }
-    
+    } 
 }

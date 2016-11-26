@@ -10,7 +10,7 @@
                 <param name="property">membre</param>
             </generator>
         </id>
-        <one-to-one name="membre" class="locafilm.Membre" constrained="true"></one-to-one>
+        <one-to-one name="idmembre" class="locafilm.Membre" constrained="true"></one-to-one>
         <many-to-one name="forfait" class="locafilm.Forfait" fetch="select">
             <column name="IDFORFAIT" precision="22" scale="0" not-null="true" />
         </many-to-one>
