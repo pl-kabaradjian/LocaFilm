@@ -27,8 +27,8 @@
             <column name="MOTDEPASSE" length="50" />
         </property>
         <!-- <one-to-one name="client" class="locafilm.Client"></one-to-one>
-        <one-to-one name="adresse" class="locafilm.Adresse"></one-to-one>
         <one-to-one name="employe" class="locafilm.Employe"></one-to-one>
         -->
+        <one-to-one name="adresse" class="locafilm.Adresse"></one-to-one>
     </class>
 </hibernate-mapping>

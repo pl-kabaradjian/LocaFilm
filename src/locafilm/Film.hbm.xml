@@ -29,25 +29,25 @@
         <property name="poster" type="string">
             <column name="POSTER" />
         </property>
-        <set name="copies" table="COPIE" inverse="true" lazy="true" fetch="select">
+        <set name="copies" table="COPIE" inverse="true" lazy="false" fetch="select">
             <key>
                 <column name="IDFILM" precision="22" scale="0" not-null="true" />
             </key>
             <one-to-many class="locafilm.Copie" />
         </set>
-        <set name="annonces" table="ANNONCE" inverse="true" lazy="true" fetch="select">
+        <set name="annonces" table="ANNONCE" inverse="true" lazy="false" fetch="select">
             <key>
                 <column name="IDFILM" precision="22" scale="0" not-null="true" />
             </key>
             <one-to-many class="locafilm.Annonce" />
         </set>
-        <set name="roles" table="ROLE" inverse="true" lazy="true" fetch="select">
+        <set name="roles" table="ROLE" inverse="true" lazy="false" fetch="select">
             <key>
                 <column name="IDFILM" precision="22" scale="0" not-null="true" />
             </key>
             <one-to-many class="locafilm.Role" />
         </set>
-        <set name="genres" table="GENREFILM" inverse="false" lazy="true" fetch="select">
+        <set name="genres" table="GENREFILM" inverse="false" lazy="false" fetch="select">
             <key>
                 <column name="IDFILM" precision="22" scale="0" not-null="true" />
             </key>
@@ -55,7 +55,7 @@
                 <column name="IDGENRE" precision="22" scale="0" not-null="true" />
             </many-to-many>
         </set>
-        <set name="payses" table="FILMPAYS" inverse="false" lazy="true" fetch="select">
+        <set name="payses" table="FILMPAYS" inverse="false" lazy="false" fetch="select">
             <key>
                 <column name="IDFILM" precision="22" scale="0" not-null="true" />
             </key>
@@ -63,7 +63,7 @@
                 <column name="IDPAYS" precision="22" scale="0" not-null="true" />
             </many-to-many>
         </set>
-        <set name="scenaristes" table="SCENARISTE" inverse="true" lazy="true" fetch="select">
+        <set name="scenaristes" table="SCENARISTE" inverse="true" lazy="false" fetch="select">
             <key>
                 <column name="IDFILM" precision="22" scale="0" not-null="true" />
             </key>
