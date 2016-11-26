@@ -18,7 +18,7 @@ public class Main {
        JFrame window_login = new LoginWindow();
        window_login.show();
        //final Configuration configuration = new Configuration().configure();
-       final SessionFactory factory = HibernateUtil.getSessionFactory();
+   /*    final SessionFactory factory = HibernateUtil.getSessionFactory();
        final Session s = factory.openSession();
        
        Query q = s.createSQLQuery("SELECT * FROM Film").addEntity(Film.class);
@@ -33,8 +33,11 @@ public class Main {
             System.out.println("Film :"+ f.getTitre() );
         }
        System.out.println("\n----\n");
-       s.close();
-       factory.close();
+       s.close();*/
+       
+       Client c = DaoClient.getClientByEmail("sags3@gmail.ca");
+       System.out.println(c.getMotdepasse());
+ //      factory.close();
     }
     
 }
