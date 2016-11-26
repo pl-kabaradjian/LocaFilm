@@ -21,7 +21,7 @@ public class DaoClient {
        final SessionFactory factory = HibernateUtil.getSessionFactory();
        final Session s = factory.openSession();
        
-       Query q = s.createSQLQuery("SELECT * FROM Client JOIN Membre On Client.idmembre=Membre.idmembre WHERE Membre.courriel LIKE \'"+email+"\';").addEntity(Client.class);
+       Query q = s.createSQLQuery("SELECT * FROM Client JOIN Membre On Client.idmembre=Membre.idmembre WHERE Membre.courriel LIKE \'"+email+"\'").addEntity(Client.class);
        System.out.println(q);
        List<Client> l= q.list();
        Client c = l.get(0);

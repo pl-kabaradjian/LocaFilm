@@ -46,7 +46,6 @@ Contributor(s):
     <property name="hibernate.connection.url">jdbc:oracle:thin:@localhost:1521:XE</property>
     <property name="hibernate.connection.username">locafilm</property>
     <property name="hibernate.connection.password">uqac1234</property>
-    <mapping resource="locafilm/Client.hbm.xml"/>
     <mapping resource="locafilm/Membre.hbm.xml"/>
     <mapping resource="locafilm/Role.hbm.xml"/>
     <mapping resource="locafilm/Equipetournage.hbm.xml"/>
@@ -60,6 +59,7 @@ Contributor(s):
     <mapping resource="locafilm/Infocredit.hbm.xml"/>
     <mapping resource="locafilm/Annonce.hbm.xml"/>
     <mapping resource="locafilm/Forfait.hbm.xml"/>
-    <mapping resource="locafilm/Employe.hbm.xml"/>
+    <!--<mapping resource="locafilm/Employe.hbm.xml"/>
+    <mapping resource="locafilm/Client.hbm.xml"/>-->
   </session-factory>
 </hibernate-configuration>

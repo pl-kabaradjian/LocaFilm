@@ -6,7 +6,7 @@
     <class name="locafilm.Membre" table="MEMBRE" schema="LOCAFILM" optimistic-lock="version">
         <id name="idmembre" type="big_decimal">
             <column name="IDMEMBRE" precision="22" scale="0" />
-            <generator class="assigned" />
+            <generator class="native" />
         </id>
         <property name="nomfamille" type="string">
             <column name="NOMFAMILLE" length="50" />
@@ -26,8 +26,31 @@
         <property name="motdepasse" type="string">
             <column name="MOTDEPASSE" length="50" />
         </property>
- <!--       <one-to-one name="client" class="locafilm.Client"></one-to-one>-->
-        <one-to-one name="adresse" class="locafilm.Adresse"></one-to-one>
- <!--       <one-to-one name="employe" class="locafilm.Employe"></one-to-one>-->
+        <one-to-one name="adresse" class="locafilm.Adresse"></one-to-one> 
+        <!--<one-to-one name="client" class="locafilm.Client"></one-to-one>-->
+        <!--<one-to-one name="employe" class="locafilm.Employe"></one-to-one>-->
+        
+        <joined-subclass name="locafilm.Client" table="CLIENT">
+        <key column="idmembre"/>
+            <one-to-one name="idmembre" class="locafilm.Membre" constrained="true"></one-to-one>
+            <many-to-one name="forfait" class="locafilm.Forfait" fetch="select">
+                <column name="IDFORFAIT" precision="22" scale="0" not-null="true" />
+            </many-to-one>
+            <one-to-one name="infocredit" class="locafilm.Infocredit"></one-to-one>
+            <set name="locations" table="LOCATION" inverse="true" lazy="true" fetch="select">
+                <key>
+                    <column name="IDMEMBRE" precision="22" scale="0" not-null="true" />
+                </key>
+                <one-to-many class="locafilm.Location" />
+            </set>
+        </joined-subclass>
+            
+        <joined-subclass name="locafilm.Employe" table="EMPLOYE">
+        <key column="idmembre"/>
+            <one-to-one name="idmembre" class="locafilm.Membre" constrained="true"></one-to-one>
+            <property name="matricule" type="java.lang.Integer">
+                <column name="MATRICULE" precision="8" scale="0" unique="true" />
+            </property>
+        </joined-subclass>
     </class>
 </hibernate-mapping>

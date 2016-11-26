@@ -20,7 +20,6 @@ public class Main {
 
        Client c = DaoClient.getClientByEmail("sags3@gmail.ca");
        System.out.println(c.getMotdepasse());
- //      factory.close();
-    }
-    
+ //    factory.close();
+    } 
 }
