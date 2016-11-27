@@ -16,17 +16,21 @@ import org.hibernate.SessionFactory;
  */
 public class DaoClient {
     
-    public static Client getClientByEmail( String email)
-    {
-       final SessionFactory factory = HibernateUtil.getSessionFactory();
-       final Session s = factory.openSession();
-       
-       Query q = s.createSQLQuery("SELECT * FROM Client JOIN Membre On Client.idmembre=Membre.idmembre WHERE Membre.courriel LIKE \'"+email+"\'").addEntity(Client.class);
-       System.out.println(q);
-       List<Client> l= q.list();
-       Client c = l.get(0);
-       s.close(); 
-       factory.close();
-       return c;
+    public static Client getClientByEmail(String email) {
+        final SessionFactory factory = HibernateUtil.getSessionFactory();
+        final Session s = factory.openSession();
+
+        Query q = s.createSQLQuery("SELECT * FROM Client JOIN Membre On Client.idmembre=Membre.idmembre WHERE Membre.courriel LIKE \'" + email + "\'").addEntity(Client.class);
+        System.out.println(q);
+        List<Client> l = q.list();
+        Client c;
+        if (l.isEmpty()) {
+            c = null;
+        } else {
+            c = l.get(0);
+        }
+        s.close();
+        //factory.close();
+        return c;
     }
 }

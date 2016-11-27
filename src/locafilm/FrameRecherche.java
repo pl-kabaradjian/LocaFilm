@@ -7,18 +7,28 @@ package locafilm;
 
 import java.util.List;
 import javax.swing.DefaultListModel;
+import javax.swing.JLabel;
 
 /**
  *
  * @author Carine
  */
 public class FrameRecherche extends javax.swing.JFrame {
-
+    private Controleur c;
     /**
      * Creates new form FrameRecherche
      */
     public FrameRecherche() {
         initComponents();
+    }
+
+    public void setC(Controleur c) {
+        this.c = c;
+    }
+    
+    public FrameRecherche(Controleur c) {
+        initComponents();
+        this.c = c;
     }
 
     /**
@@ -125,19 +135,20 @@ public class FrameRecherche extends javax.swing.JFrame {
         panel_rechercheLayout.setHorizontalGroup(
             panel_rechercheLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panel_rechercheLayout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(panel_rechercheLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panel_rechercheLayout.createSequentialGroup()
-                        .addComponent(panel_resultat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(panel_chercher, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap()
+                        .addGroup(panel_rechercheLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panel_rechercheLayout.createSequentialGroup()
+                                .addComponent(panel_resultat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(panel_chercher, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(panel_rechercheLayout.createSequentialGroup()
+                        .addGap(26, 26, 26)
+                        .addComponent(label_utilisateur)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(label_nom_utilisateur, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(panel_rechercheLayout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addComponent(label_utilisateur)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(label_nom_utilisateur)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panel_rechercheLayout.setVerticalGroup(
             panel_rechercheLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -145,7 +156,7 @@ public class FrameRecherche extends javax.swing.JFrame {
                 .addGap(6, 6, 6)
                 .addGroup(panel_rechercheLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(label_utilisateur)
-                    .addComponent(label_nom_utilisateur))
+                    .addComponent(label_nom_utilisateur, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(panel_chercher, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -190,6 +201,14 @@ public class FrameRecherche extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_bouton_chercherActionPerformed
+
+    public JLabel getLabel_nom_utilisateur() {
+        return label_nom_utilisateur;
+    }
+
+    public JLabel getLabel_utilisateur() {
+        return label_utilisateur;
+    }
 
     /**
      * @param args the command line arguments
