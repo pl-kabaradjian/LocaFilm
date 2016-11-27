@@ -180,14 +180,26 @@ public class FrameRecherche extends javax.swing.JFrame {
         DefaultListModel listModel = new DefaultListModel();
         jList1.setModel(listModel);
         
-        listModel.addElement("TEST");
-        
+        boolean find = false;
+
+
         for (Film f : listFilm) {
-            if (critere == "titre") {
-                if (f.getTitre() == recherche) {
+            if (critere == "titre") 
+            {
+                if (f.getTitre().lastIndexOf(recherche) != -1) {find = true;}
+                if (find) {
                     listModel.addElement(f.getTitre());
                 }
             }
+            if (critere == "annee") 
+            {
+                if (f.getAnnee().toString().lastIndexOf(recherche) != -1) {find = true;}
+                if (find) {
+                    listModel.addElement(f.getTitre());
+                }
+            }
+            
+            find=false;
         }
     }//GEN-LAST:event_bouton_chercherActionPerformed
 

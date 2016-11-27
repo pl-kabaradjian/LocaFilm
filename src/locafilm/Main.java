@@ -19,6 +19,11 @@ public class Main {
        JFrame f2 = new FrameRecherche();
        window_login.show();
        f2.show();
+       List<Film> films = Facade.getListeFilm();
+       for (Film f : films)
+       {
+           System.out.println(f.getTitre());
+       }
 
        Client c = DaoClient.getClientByEmail("sags3@gmail.ca");
        System.out.println(c.getMotdepasse());
