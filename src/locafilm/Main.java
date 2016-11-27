@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package locafilm;
+
 import java.util.*;
 import java.sql.*;
 import org.hibernate.Session;
@@ -13,20 +14,33 @@ import org.hibernate.Query;
 import javax.swing.*;
 
 public class Main {
- 
-    public static void main(String [] args){
-       JFrame window_login = new LoginWindow();
-       JFrame f2 = new FrameRecherche();
-       window_login.show();
-       f2.show();
-       List<Film> films = Facade.getListeFilm();
-       for (Film f : films)
-       {
-           System.out.println(f.getTitre());
-       }
+//<<<<<<< HEAD
+// 
+//    public static void main(String [] args){
+//       JFrame window_login = new LoginWindow();
+//       JFrame f2 = new FrameRecherche();
+//       window_login.show();
+//       f2.show();
+//       List<Film> films = Facade.getListeFilm();
+//       for (Film f : films)
+//       {
+//           System.out.println(f.getTitre());
+//       }
+//=======
+//>>>>>>> origin/master
 
-       Client c = DaoClient.getClientByEmail("sags3@gmail.ca");
-       System.out.println(c.getMotdepasse());
- //    factory.close();
-    } 
+    public static void main(String[] args) {
+        Controleur control = new Controleur();
+
+        LoginWindow window_login = new LoginWindow(control);
+        FrameRecherche recherche_frame = new FrameRecherche(control);
+        //FramePerson person_frame = new FramePerson(control);
+        //control.setFp(person_frame);
+        control.setLw(window_login);
+        control.setFr(recherche_frame);
+        //window_login.show();
+        //f2.show();
+        control.start();
+        HibernateUtil.getSessionFactory();
+    }
 }

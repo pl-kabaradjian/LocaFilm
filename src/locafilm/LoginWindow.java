@@ -13,12 +13,20 @@ import javax.swing.*;
  * @author PLK
  */
 public class LoginWindow extends javax.swing.JFrame {
+    private Controleur c;
 
+    public void setC(Controleur c) {
+        this.c = c;
+    }
     /**
      * Creates new form NewJFrame
      */
     public LoginWindow() {
         initComponents();
+    }
+    public LoginWindow(Controleur c) {
+        initComponents();
+        this.setC(c);
     }
 
     /**
@@ -35,8 +43,8 @@ public class LoginWindow extends javax.swing.JFrame {
         label_identifiant = new javax.swing.JLabel();
         tf_identifiant = new javax.swing.JTextField();
         panel_password = new javax.swing.JPanel();
+        tf_password = new javax.swing.JPasswordField();
         label_password = new javax.swing.JLabel();
-        tf_password = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -88,16 +96,11 @@ public class LoginWindow extends javax.swing.JFrame {
 
         panel_connexion.add(panel_identifiant);
 
-        label_password.setText("Mot de passe");
-
-        tf_password.setForeground(java.awt.Color.gray);
-        tf_password.setText("Entrez votre mdp");
+        tf_password.setText("12346");
+        tf_password.setToolTipText("");
         tf_password.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                tf_passwordOnFocus(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                tf_passwordFocusLost(evt);
+                tf_passwordFocusGained(evt);
             }
         });
         tf_password.addActionListener(new java.awt.event.ActionListener() {
@@ -106,6 +109,8 @@ public class LoginWindow extends javax.swing.JFrame {
             }
         });
 
+        label_password.setText("Mot de passe");
+
         javax.swing.GroupLayout panel_passwordLayout = new javax.swing.GroupLayout(panel_password);
         panel_password.setLayout(panel_passwordLayout);
         panel_passwordLayout.setHorizontalGroup(
@@ -113,18 +118,24 @@ public class LoginWindow extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_passwordLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(label_password)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tf_password, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(139, 139, 139))
+            .addGroup(panel_passwordLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_passwordLayout.createSequentialGroup()
+                    .addContainerGap(86, Short.MAX_VALUE)
+                    .addComponent(tf_password, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap()))
         );
         panel_passwordLayout.setVerticalGroup(
             panel_passwordLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panel_passwordLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(panel_passwordLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tf_password, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(label_password))
+                .addComponent(label_password)
                 .addContainerGap())
+            .addGroup(panel_passwordLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_passwordLayout.createSequentialGroup()
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(tf_password, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
         panel_connexion.add(panel_password);
@@ -157,33 +168,21 @@ public class LoginWindow extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public JTextField getTf_identifiant() {
+        return tf_identifiant;
+    }
+
+    public JTextField getTf_password() {
+        return tf_password;
+    }
+
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        c.connexion();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void tf_identifiantActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_identifiantActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_tf_identifiantActionPerformed
-
-    private void tf_passwordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_passwordActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tf_passwordActionPerformed
-
-    private void tf_passwordOnFocus(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tf_passwordOnFocus
-    //JTextField tf_password = (javax.swing.JTextField)evt.getSource();
-        if (tf_password.getText().equals("Entrez votre mdp")) {
-            tf_password.setText("");
-            tf_password.setForeground(java.awt.Color.BLACK);
-        }
-    }//GEN-LAST:event_tf_passwordOnFocus
-
-    private void tf_passwordFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tf_passwordFocusLost
-    //JTextField tf_password = (javax.swing.JTextField)evt.getSource();
-        if(tf_password.getText().isEmpty()){
-            tf_password.setForeground(java.awt.Color.gray);
-            tf_password.setText("Entrez votre mdp");
-        }
-    }//GEN-LAST:event_tf_passwordFocusLost
 
     private void tf_identifiantFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tf_identifiantFocusGained
         if (tf_identifiant.getText().equals("Courriel / Matricule")) {
@@ -198,6 +197,14 @@ public class LoginWindow extends javax.swing.JFrame {
             tf_identifiant.setText("Courriel / Matricule");
         }
     }//GEN-LAST:event_tf_identifiantFocusLost
+
+    private void tf_passwordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_passwordActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tf_passwordActionPerformed
+
+    private void tf_passwordFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tf_passwordFocusGained
+        tf_password.setText("");
+    }//GEN-LAST:event_tf_passwordFocusGained
 
     /**
      * @param args the command line arguments
@@ -243,6 +250,6 @@ public class LoginWindow extends javax.swing.JFrame {
     private javax.swing.JPanel panel_identifiant;
     private javax.swing.JPanel panel_password;
     private javax.swing.JTextField tf_identifiant;
-    private javax.swing.JTextField tf_password;
+    private javax.swing.JPasswordField tf_password;
     // End of variables declaration//GEN-END:variables
 }
