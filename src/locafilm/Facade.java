@@ -5,10 +5,16 @@
  */
 package locafilm;
 
+import java.util.List;
 /**
  *
  * @author Carine
  */
 public class Facade {
+    
+    public static List<Film> getListeFilm()
+    {
+        return DAOFilm.getAllFilm();
+    }
     
 }
