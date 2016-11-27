@@ -5,6 +5,10 @@
  */
 package locafilm;
 
+import java.math.BigDecimal;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -15,6 +19,7 @@ public class Controleur {
     private FramePerson fp;
     private FrameRecherche fr;
     private LoginWindow lw;
+    private FrameFilm ff;
 
     public void setFp(FramePerson fp) {
         this.fp = fp;
@@ -30,6 +35,12 @@ public class Controleur {
 
     void start() {
         lw.setVisible(true);
+        ff.setVisible(true);
+        afficherFilm(10);
+    }
+
+    public void setFf(FrameFilm ff) {
+        this.ff = ff;
     }
     
     void connexion(){
@@ -45,5 +56,16 @@ public class Controleur {
         else{
             JOptionPane.showMessageDialog(lw,"Identifiant ou mot de passe incorrect","Login Error",JOptionPane.ERROR_MESSAGE);
         }
+    }
+
+    void afficherFilm(int idFilm) {
+        Film f = DAOFilm.getFilmInfos(idFilm);
+        ff.setF(f);
+        try {
+            ff.updateInfos();
+        } catch (SQLException ex) {
+            Logger.getLogger(Controleur.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        ff.setVisible(true); 
     }
 }

@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package locafilm;
+import java.math.BigDecimal;
 import java.util.*;
 import org.hibernate.FetchMode;
 import org.hibernate.Query;
@@ -33,7 +34,8 @@ public class DAOFilm {
     public static Film getFilmInfos(int id){
         final SessionFactory factory = HibernateUtil.getSessionFactory();
         final Session s = factory.openSession();
-        List<Film> result = s.createCriteria(Film.class).add(Restrictions.eq("IDFILM",id)).list();
+        BigDecimal j = new BigDecimal(id);
+        List<Film> result = s.createCriteria(Film.class).add(Restrictions.eq("idfilm",j)).list();
         
         return result.get(0);
     }

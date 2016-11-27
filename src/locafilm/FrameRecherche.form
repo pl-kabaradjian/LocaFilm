@@ -201,6 +201,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="voir la fiche"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bouton_voir_ficheActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="bouton_louer">
               <Properties>

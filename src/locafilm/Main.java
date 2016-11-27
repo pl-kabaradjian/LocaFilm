@@ -20,9 +20,12 @@ public class Main {
         LoginWindow window_login = new LoginWindow(control);
         FrameRecherche recherche_frame = new FrameRecherche(control);
         //FramePerson person_frame = new FramePerson(control);
+        FrameFilm film_frame = new FrameFilm(control);
         //control.setFp(person_frame);
         control.setLw(window_login);
         control.setFr(recherche_frame);
+        control.setFf(film_frame);
+
         //window_login.show();
         //f2.show();
         control.start();

@@ -5,6 +5,7 @@
  */
 package locafilm;
 
+import java.math.BigDecimal;
 import java.util.List;
 import javax.swing.DefaultListModel;
 import javax.swing.JLabel;
@@ -94,6 +95,11 @@ public class FrameRecherche extends javax.swing.JFrame {
         list_resultat.setViewportView(jList1);
 
         bouton_voir_fiche.setText("voir la fiche");
+        bouton_voir_fiche.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bouton_voir_ficheActionPerformed(evt);
+            }
+        });
 
         bouton_louer.setLabel("louer");
         bouton_louer.addActionListener(new java.awt.event.ActionListener() {
@@ -242,6 +248,11 @@ public class FrameRecherche extends javax.swing.JFrame {
             find=false;
         }
     }//GEN-LAST:event_bouton_chercherActionPerformed
+
+    private void bouton_voir_ficheActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bouton_voir_ficheActionPerformed
+        int idFilm = 10;
+        c.afficherFilm(idFilm);
+    }//GEN-LAST:event_bouton_voir_ficheActionPerformed
 
     public JLabel getLabel_nom_utilisateur() {
         return label_nom_utilisateur;
