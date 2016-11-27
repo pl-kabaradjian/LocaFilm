@@ -27,5 +27,6 @@ public class Main {
         //window_login.show();
         //f2.show();
         control.start();
+        HibernateUtil.getSessionFactory();
     }
 }
