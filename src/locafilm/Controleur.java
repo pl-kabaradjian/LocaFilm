@@ -35,8 +35,8 @@ public class Controleur {
 
     void start() {
         lw.setVisible(true);
-        ff.setVisible(true);
-        afficherFilm(10);
+       // ff.setVisible(true);
+        //afficherFilm(10);
     }
 
     public void setFf(FrameFilm ff) {
@@ -58,7 +58,7 @@ public class Controleur {
         }
     }
 
-    void afficherFilm(int idFilm) {
+    void afficherFilm(BigDecimal idFilm) {
         Film f = DAOFilm.getFilmInfos(idFilm);
         ff.setF(f);
         try {

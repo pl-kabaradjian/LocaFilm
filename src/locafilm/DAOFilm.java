@@ -31,10 +31,10 @@ public class DAOFilm {
         return films;
     }
     
-    public static Film getFilmInfos(int id){
+    public static Film getFilmInfos(BigDecimal id){
         final SessionFactory factory = HibernateUtil.getSessionFactory();
         final Session s = factory.openSession();
-        BigDecimal j = new BigDecimal(id);
+        BigDecimal j = id;
         List<Film> result = s.createCriteria(Film.class).add(Restrictions.eq("idfilm",j)).list();
         
         return result.get(0);

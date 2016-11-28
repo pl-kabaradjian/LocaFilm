@@ -189,7 +189,7 @@ public class FrameRecherche extends javax.swing.JFrame {
     }//GEN-LAST:event_bouton_louerActionPerformed
 
     private void bouton_chercherActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bouton_chercherActionPerformed
-        System.out.println("Appui");
+       // System.out.println("Appui");
         String recherche = textField_critere.getText();
         String critere = comboBox_critere.getSelectedItem().toString();
         List<Film> listFilm = Facade.getListeFilm();
@@ -250,7 +250,16 @@ public class FrameRecherche extends javax.swing.JFrame {
     }//GEN-LAST:event_bouton_chercherActionPerformed
 
     private void bouton_voir_ficheActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bouton_voir_ficheActionPerformed
-        int idFilm = 10;
+        BigDecimal idFilm = new BigDecimal("1");
+        List<Film> listFilm = Facade.getListeFilm();
+        String titre = jList1.getSelectedValue();
+        
+        for(Film f : listFilm)
+        {
+            if(f.getTitre().equalsIgnoreCase(titre))
+                idFilm=f.getIdfilm();
+        }
+        
         c.afficherFilm(idFilm);
     }//GEN-LAST:event_bouton_voir_ficheActionPerformed
 
