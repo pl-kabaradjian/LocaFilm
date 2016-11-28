@@ -27,6 +27,7 @@ public class Film  implements java.io.Serializable {
      private Set genres = new HashSet(0);
      private Set payses = new HashSet(0);
      private Set scenaristes = new HashSet(0);
+     private Set realisateur = new HashSet(0);
 
     public Film() {
     }
@@ -35,7 +36,7 @@ public class Film  implements java.io.Serializable {
     public Film(BigDecimal idfilm) {
         this.idfilm = idfilm;
     }
-    public Film(BigDecimal idfilm, Equipetournage equipetournage, String titre, BigDecimal annee, String langue, BigDecimal duree, Blob resume, String poster, Set copies, Set annonces, Set roles, Set genres, Set payses, Set scenaristes) {
+    public Film(BigDecimal idfilm, Equipetournage equipetournage, String titre, BigDecimal annee, String langue, BigDecimal duree, Blob resume, String poster, Set copies, Set annonces, Set roles, Set genres, Set payses, Set scenaristes, Set realisateur) {
        this.idfilm = idfilm;
        this.equipetournage = equipetournage;
        this.titre = titre;
@@ -50,6 +51,7 @@ public class Film  implements java.io.Serializable {
        this.genres = genres;
        this.payses = payses;
        this.scenaristes = scenaristes;
+       this.realisateur = realisateur;
     }
    
     public BigDecimal getIdfilm() {
@@ -149,6 +151,14 @@ public class Film  implements java.io.Serializable {
     
     public void setScenaristes(Set scenaristes) {
         this.scenaristes = scenaristes;
+    }
+    
+    public Set getRealisateur()
+    {
+        return this.realisateur;
+    }
+    public void setRealisateur(Set realisateur){
+        this.realisateur = realisateur;
     }
 
 

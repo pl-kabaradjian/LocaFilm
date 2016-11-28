@@ -29,6 +29,12 @@
         <property name="poster" type="string">
             <column name="POSTER" />
         </property>
+        <set name="realisateur" table="EQUIPETOURNAGE" inverse="true" lazy="false" fetch="select">
+            <key>
+                <column name="IDPERSONNE" precision="22" scale="0" not-null="true" />
+            </key>
+            <one-to-many class="locafilm.Equipetournage" />
+        </set>
         <set name="copies" table="COPIE" inverse="true" lazy="false" fetch="select">
             <key>
                 <column name="IDFILM" precision="22" scale="0" not-null="true" />
@@ -69,5 +75,6 @@
             </key>
             <one-to-many class="locafilm.Scenariste" />
         </set>
+        
     </class>
 </hibernate-mapping>

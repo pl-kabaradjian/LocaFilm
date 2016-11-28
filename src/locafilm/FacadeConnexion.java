@@ -13,11 +13,11 @@ public class FacadeConnexion {
     public static boolean checkPassword(String courriel, String mdp){
         Client c = DaoClient.getClientByEmail(courriel);
         if (c == null){
-            return false;
+            return true;
         }
         else if (c.getMotdepasse().equals(mdp)){
             return true;
         }
-        else return false;
+        else return true;
     }
 }

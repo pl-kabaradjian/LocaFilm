@@ -197,14 +197,43 @@ public class FrameRecherche extends javax.swing.JFrame {
         for (Film f : listFilm) {
             if (critere == "titre") 
             {
-                if (f.getTitre().lastIndexOf(recherche) != -1) {find = true;}
+                if (f.getTitre().toLowerCase().lastIndexOf(recherche.toLowerCase()) != -1) {find = true;}
                 if (find) {
                     listModel.addElement(f.getTitre());
                 }
             }
             if (critere == "annee") 
             {
-                if (f.getAnnee().toString().lastIndexOf(recherche) != -1) {find = true;}
+                if (f.getAnnee().toString().equalsIgnoreCase(recherche))
+                    listModel.addElement(f.getTitre().toString());
+            }
+            if (critere == "pays") 
+            {
+                if (((Pays)f.getPayses().toArray()[0]).getPays().equalsIgnoreCase(recherche))
+                    listModel.addElement(f.getTitre());
+            }
+            if (critere == "langue") 
+            {
+                if (f.getLangue().toLowerCase().lastIndexOf(recherche.toLowerCase()) != -1) {find = true;}
+                if (find) {
+                    listModel.addElement(f.getTitre());
+                }
+            }
+            if (critere == "duree") 
+            {
+                if (f.getDuree().toString().equalsIgnoreCase(recherche))
+                    listModel.addElement(f.getTitre().toString());
+            }
+            if (critere == "realisateur") 
+            {
+                if (((Equipetournage)f.getRealisateur().toArray()[0]).getNom().toLowerCase().lastIndexOf(recherche.toLowerCase()) != -1) {find = true;}
+                if (find) {
+                    listModel.addElement(f.getTitre());
+                }
+            }
+            if (critere == "genre") 
+            {
+                if (((Genre)f.getGenres().toArray()[0]).getGenre().toLowerCase().lastIndexOf(recherche.toLowerCase()) != -1) {find = true;}
                 if (find) {
                     listModel.addElement(f.getTitre());
                 }

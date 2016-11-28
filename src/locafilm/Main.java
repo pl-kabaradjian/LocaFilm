@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package locafilm;
-
 import java.util.*;
 import java.sql.*;
 import org.hibernate.Session;
@@ -14,20 +13,6 @@ import org.hibernate.Query;
 import javax.swing.*;
 
 public class Main {
-//<<<<<<< HEAD
-// 
-//    public static void main(String [] args){
-//       JFrame window_login = new LoginWindow();
-//       JFrame f2 = new FrameRecherche();
-//       window_login.show();
-//       f2.show();
-//       List<Film> films = Facade.getListeFilm();
-//       for (Film f : films)
-//       {
-//           System.out.println(f.getTitre());
-//       }
-//=======
-//>>>>>>> origin/master
 
     public static void main(String[] args) {
         Controleur control = new Controleur();
