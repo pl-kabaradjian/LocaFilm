@@ -246,43 +246,43 @@ public class FrameRecherche extends javax.swing.JFrame {
             {
                 if (f.getTitre().toLowerCase().lastIndexOf(recherche.toLowerCase()) != -1) {find = true;}
                 if (find) {
-                    listModel.addElement(f.getTitre());
+                    listModel.addElement(f.getTitre()+" ("+f.getAnnee().toString()+")");
                 }
             }
             if (critere == "annee") 
             {
                 if (f.getAnnee().toString().equalsIgnoreCase(recherche))
-                    listModel.addElement(f.getTitre().toString());
+                    listModel.addElement(f.getTitre().toString()+" ("+f.getAnnee().toString()+")");
             }
             if (critere == "pays") 
             {
                 if (((Pays)f.getPayses().toArray()[0]).getPays().equalsIgnoreCase(recherche))
-                    listModel.addElement(f.getTitre());
+                    listModel.addElement(f.getTitre()+" ("+f.getAnnee().toString()+")");
             }
             if (critere == "langue") 
             {
                 if (f.getLangue().toLowerCase().lastIndexOf(recherche.toLowerCase()) != -1) {find = true;}
                 if (find) {
-                    listModel.addElement(f.getTitre());
+                    listModel.addElement(f.getTitre()+" ("+f.getAnnee().toString()+")");
                 }
             }
             if (critere == "duree") 
             {
                 if (f.getDuree().toString().equalsIgnoreCase(recherche))
-                    listModel.addElement(f.getTitre().toString());
+                    listModel.addElement(f.getTitre().toString()+" ("+f.getAnnee().toString()+")");
             }
             if (critere == "realisateur") 
             {
                 if (((Equipetournage)f.getRealisateur().toArray()[0]).getNom().toLowerCase().lastIndexOf(recherche.toLowerCase()) != -1) {find = true;}
                 if (find) {
-                    listModel.addElement(f.getTitre());
+                    listModel.addElement(f.getTitre()+" ("+f.getAnnee().toString()+")");
                 }
             }
             if (critere == "genre") 
             {
                 if (((Genre)f.getGenres().toArray()[0]).getGenre().toLowerCase().lastIndexOf(recherche.toLowerCase()) != -1) {find = true;}
                 if (find) {
-                    listModel.addElement(f.getTitre());
+                    listModel.addElement(f.getTitre()+" ("+f.getAnnee().toString()+")");
                 }
             }
             
@@ -293,7 +293,8 @@ public class FrameRecherche extends javax.swing.JFrame {
     private void bouton_voir_ficheActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bouton_voir_ficheActionPerformed
         BigDecimal idFilm = new BigDecimal("1");
         List<Film> listFilm = Facade.getListeFilm();
-        String titre = jList1.getSelectedValue();
+        String filmtitre = jList1.getSelectedValue();
+        String titre=filmtitre.substring(0,filmtitre.length()-7);
         
         for(Film f : listFilm)
         {
