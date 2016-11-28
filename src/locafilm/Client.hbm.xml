@@ -11,11 +11,11 @@
             </generator>
         </id>
         <one-to-one name="idmembre" class="locafilm.Membre" constrained="true"></one-to-one>
-        <many-to-one name="forfait" class="locafilm.Forfait" fetch="select">
+        <many-to-one name="forfait" class="locafilm.Forfait" lazy="false" fetch="join">
             <column name="IDFORFAIT" precision="22" scale="0" not-null="true" />
         </many-to-one>
         <one-to-one name="infocredit" class="locafilm.Infocredit"></one-to-one>
-        <set name="locations" table="LOCATION" inverse="true" lazy="true" fetch="select">
+        <set name="locations" table="LOCATION" inverse="true" lazy="false" fetch="join">
             <key>
                 <column name="IDMEMBRE" precision="22" scale="0" not-null="true" />
             </key>

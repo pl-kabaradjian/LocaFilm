@@ -6,7 +6,9 @@
     <class name="locafilm.Location" table="LOCATION" schema="LOCAFILM" optimistic-lock="version">
         <id name="idlocation" type="big_decimal">
             <column name="IDLOCATION" precision="22" scale="0" />
-            <generator class="assigned" />
+            <generator class="sequence">
+                <param name="sequence">SEQ_LOCATION</param>
+            </generator>
         </id>
         <many-to-one name="client" class="locafilm.Client" fetch="select">
             <column name="IDMEMBRE" precision="22" scale="0" not-null="true" />

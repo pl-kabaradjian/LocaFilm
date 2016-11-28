@@ -39,4 +39,21 @@ public class DAOFilm {
         
         return result.get(0);
     }
+    
+    public static Copie getCopie(BigDecimal idFilm){
+        final SessionFactory factory = HibernateUtil.getSessionFactory();
+        final Session s = factory.openSession();
+        
+        Query q = s.createSQLQuery("SELECT COPIE.IDFILM,COPIE.NUMEROCOPIE FROM LOCATION RIGHT JOIN (COPIE LEFT JOIN FILM ON COPIE.IDFILM = FILM.IDFILM) ON COPIE.NUMEROCOPIE = LOCATION.NUMEROCOPIE WHERE ((LOCATION.DATELOCATION IS NULL) OR (LOCATION.DATERETOUR IS NOT NULL AND LOCATION.DATELOCATION IS NOT NULL)) AND FILM.IDFILM ="
+                + idFilm.toString()).addEntity(Copie.class);
+        //System.out.println(q);
+        List<Copie> res = q.list();
+        //System.out.println(res);
+        if(res.isEmpty()){
+            return null;
+        }
+        else{
+            return res.get(0);
+        }
+    }
 }

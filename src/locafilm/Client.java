@@ -62,10 +62,6 @@ public class Client extends Membre implements java.io.Serializable {
     public void setLocations(Set locations) {
         this.locations = locations;
     }
-
-
-
-
 }
 
 

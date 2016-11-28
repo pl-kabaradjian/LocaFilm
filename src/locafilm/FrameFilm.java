@@ -339,7 +339,7 @@ public class FrameFilm extends javax.swing.JFrame {
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(mainPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(panel_infos, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(panel_infos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(panel_resume, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -372,7 +372,7 @@ public class FrameFilm extends javax.swing.JFrame {
         this.tf_annee.setText(f.getAnnee().toString());
         this.tf_langue.setText(f.getLangue());
         this.tf_duree.setText(f.getDuree().toString());
-        this.tf_real.setText("WIP");
+        this.tf_real.setText(((Equipetournage)f.getRealisateur().toArray()[0]).getNom());
         this.tf_genre.setText(((Genre)f.getGenres().toArray()[0]).getGenre());
         this.tf_pays.setText(((Pays)f.getPayses().toArray()[0]).getPays());
         

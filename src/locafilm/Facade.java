@@ -5,6 +5,7 @@
  */
 package locafilm;
 
+import java.math.BigDecimal;
 import java.util.List;
 /**
  *
@@ -16,5 +17,21 @@ public class Facade {
     {
         return DAOFilm.getAllFilm();
     }
-    
+
+    static int getNbCopieMax(String courriel) {
+        Client c = DaoClient.getClientByEmail(courriel);
+        int nb = DaoClient.getLocationmax(c);
+        int currentNbLoc = DaoClient.getCurrNbLoc(c);
+        return nb-currentNbLoc;
+    }
+
+    static boolean louerFilm(String courriel, BigDecimal idFilm) {
+        Client c = DaoClient.getClientByEmail(courriel);
+        Film f = DAOFilm.getFilmInfos(idFilm);
+        if (DaoClient.insertLocation(c, f)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

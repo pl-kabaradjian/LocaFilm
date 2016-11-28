@@ -9,6 +9,7 @@ import java.math.BigDecimal;
 import java.util.List;
 import javax.swing.DefaultListModel;
 import javax.swing.JLabel;
+import javax.swing.JTextField;
 
 /**
  *
@@ -53,6 +54,8 @@ public class FrameRecherche extends javax.swing.JFrame {
         bouton_louer = new javax.swing.JButton();
         label_utilisateur = new javax.swing.JLabel();
         label_nom_utilisateur = new javax.swing.JLabel();
+        tf_nbLoc = new javax.swing.JTextField();
+        label_nbLoc = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -66,20 +69,33 @@ public class FrameRecherche extends javax.swing.JFrame {
             }
         });
 
-        textField_critere.setText("critere");
+        textField_critere.setText("Tapez votre critère");
+        textField_critere.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                textField_critereFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                textField_critereFocusLost(evt);
+            }
+        });
+        textField_critere.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textField_critereActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panel_chercherLayout = new javax.swing.GroupLayout(panel_chercher);
         panel_chercher.setLayout(panel_chercherLayout);
         panel_chercherLayout.setHorizontalGroup(
             panel_chercherLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panel_chercherLayout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addComponent(textField_critere, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(38, 38, 38)
+                .addContainerGap()
+                .addComponent(textField_critere)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(comboBox_critere, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(bouton_chercher, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(73, 73, 73))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(bouton_chercher, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         panel_chercherLayout.setVerticalGroup(
             panel_chercherLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -91,6 +107,8 @@ public class FrameRecherche extends javax.swing.JFrame {
                     .addComponent(textField_critere, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(291, 291, 291))
         );
+
+        panel_resultat.setBorder(javax.swing.BorderFactory.createTitledBorder("Résultats"));
 
         list_resultat.setViewportView(jList1);
 
@@ -114,67 +132,80 @@ public class FrameRecherche extends javax.swing.JFrame {
             panel_resultatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panel_resultatLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(list_resultat, javax.swing.GroupLayout.PREFERRED_SIZE, 442, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
-                .addGroup(panel_resultatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(bouton_voir_fiche, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(list_resultat, javax.swing.GroupLayout.PREFERRED_SIZE, 430, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(panel_resultatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(bouton_voir_fiche, javax.swing.GroupLayout.DEFAULT_SIZE, 101, Short.MAX_VALUE)
                     .addComponent(bouton_louer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(73, Short.MAX_VALUE))
+                .addContainerGap())
         );
         panel_resultatLayout.setVerticalGroup(
             panel_resultatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panel_resultatLayout.createSequentialGroup()
-                .addComponent(list_resultat)
+                .addContainerGap()
+                .addGroup(panel_resultatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panel_resultatLayout.createSequentialGroup()
+                        .addComponent(bouton_voir_fiche)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(bouton_louer)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(list_resultat, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE))
                 .addContainerGap())
-            .addGroup(panel_resultatLayout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addComponent(bouton_voir_fiche)
-                .addGap(63, 63, 63)
-                .addComponent(bouton_louer)
-                .addContainerGap(163, Short.MAX_VALUE))
         );
 
-        label_utilisateur.setText("utilisateur :");
+        label_utilisateur.setText("Connecté en tant que :");
+
+        tf_nbLoc.setEditable(false);
+        tf_nbLoc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tf_nbLocActionPerformed(evt);
+            }
+        });
+
+        label_nbLoc.setText("Nb Locations restantes :");
 
         javax.swing.GroupLayout panel_rechercheLayout = new javax.swing.GroupLayout(panel_recherche);
         panel_recherche.setLayout(panel_rechercheLayout);
         panel_rechercheLayout.setHorizontalGroup(
             panel_rechercheLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panel_rechercheLayout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(panel_rechercheLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(panel_resultat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(panel_rechercheLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(panel_rechercheLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(panel_rechercheLayout.createSequentialGroup()
-                                .addComponent(panel_resultat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(panel_chercher, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(panel_rechercheLayout.createSequentialGroup()
-                        .addGap(26, 26, 26)
-                        .addComponent(label_utilisateur)
+                        .addGap(9, 9, 9)
+                        .addComponent(label_utilisateur, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(label_nom_utilisateur, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(label_nom_utilisateur, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(label_nbLoc, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(tf_nbLoc, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(11, 11, 11))
+                    .addComponent(panel_chercher, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         panel_rechercheLayout.setVerticalGroup(
             panel_rechercheLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panel_rechercheLayout.createSequentialGroup()
-                .addGap(6, 6, 6)
-                .addGroup(panel_rechercheLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(label_utilisateur)
-                    .addComponent(label_nom_utilisateur, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap()
+                .addGroup(panel_rechercheLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(label_utilisateur, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+                    .addComponent(label_nom_utilisateur, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+                    .addComponent(label_nbLoc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(tf_nbLoc))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(panel_chercher, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(panel_chercher, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(panel_resultat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(panel_resultat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panel_recherche, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(panel_recherche, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -185,7 +216,17 @@ public class FrameRecherche extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void bouton_louerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bouton_louerActionPerformed
-        // TODO add your handling code here:
+        BigDecimal idFilm = new BigDecimal("1");
+        List<Film> listFilm = Facade.getListeFilm();
+        String titre = jList1.getSelectedValue();
+        
+        for(Film f : listFilm)
+        {
+            if(f.getTitre().equalsIgnoreCase(titre))
+                idFilm=f.getIdfilm();
+        }
+        
+        c.louerFilm(idFilm);
     }//GEN-LAST:event_bouton_louerActionPerformed
 
     private void bouton_chercherActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bouton_chercherActionPerformed
@@ -263,12 +304,34 @@ public class FrameRecherche extends javax.swing.JFrame {
         c.afficherFilm(idFilm);
     }//GEN-LAST:event_bouton_voir_ficheActionPerformed
 
+    private void textField_critereActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textField_critereActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textField_critereActionPerformed
+
+    private void textField_critereFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_textField_critereFocusGained
+        if(textField_critere.getText().equals("Tapez votre critère")){
+            textField_critere.setText("");
+        }
+    }//GEN-LAST:event_textField_critereFocusGained
+
+    private void textField_critereFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_textField_critereFocusLost
+
+    }//GEN-LAST:event_textField_critereFocusLost
+
+    private void tf_nbLocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_nbLocActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tf_nbLocActionPerformed
+
     public JLabel getLabel_nom_utilisateur() {
         return label_nom_utilisateur;
     }
 
     public JLabel getLabel_utilisateur() {
         return label_utilisateur;
+    }
+
+    public JTextField getTf_nbLoc() {
+        return tf_nbLoc;
     }
 
     /**
@@ -312,6 +375,7 @@ public class FrameRecherche extends javax.swing.JFrame {
     private javax.swing.JButton bouton_voir_fiche;
     private javax.swing.JComboBox<String> comboBox_critere;
     private javax.swing.JList<String> jList1;
+    private javax.swing.JLabel label_nbLoc;
     private javax.swing.JLabel label_nom_utilisateur;
     private javax.swing.JLabel label_utilisateur;
     private javax.swing.JScrollPane list_resultat;
@@ -319,5 +383,6 @@ public class FrameRecherche extends javax.swing.JFrame {
     private javax.swing.JPanel panel_recherche;
     private javax.swing.JPanel panel_resultat;
     private javax.swing.JTextField textField_critere;
+    private javax.swing.JTextField tf_nbLoc;
     // End of variables declaration//GEN-END:variables
 }

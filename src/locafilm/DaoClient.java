@@ -5,10 +5,12 @@
  */
 package locafilm;
 
+import java.math.BigDecimal;
 import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 
 /**
  *
@@ -29,8 +31,40 @@ public class DaoClient {
         } else {
             c = l.get(0);
         }
-        s.close();
+        //s.close();
         //factory.close();
         return c;
+    }
+    
+    public static boolean insertLocation(Client c, Film f){
+        final SessionFactory factory = HibernateUtil.getSessionFactory();
+        final Session s = factory.openSession();
+        
+        Copie copie = DAOFilm.getCopie(f.getIdfilm());
+        
+        if(copie == null){
+            s.close();
+            return false;
+        }
+        else{
+            Transaction tx=s.beginTransaction();
+            Location l = new Location(null, c, copie);
+            s.saveOrUpdate(l);
+            tx.commit();
+            s.close();
+            return true;
+        }
+    }
+
+    static int getLocationmax(Client c) {
+        int nb = c.getForfait().getLocationmax().intValueExact();
+
+        return nb;
+    }
+
+    static int getCurrNbLoc(Client c) {
+        int currentNbLoc = c.getLocations().toArray().length;
+
+        return currentNbLoc;
     }
 }

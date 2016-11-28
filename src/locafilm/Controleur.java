@@ -48,10 +48,13 @@ public class Controleur {
         String mdp = lw.getTf_password().getText();
         
         boolean check = FacadeConnexion.checkPassword(courriel, mdp);
+        
         if(check){
             lw.setVisible(false);
             fr.setVisible(true);
             fr.getLabel_nom_utilisateur().setText(courriel);
+            int nbcopiemax = Facade.getNbCopieMax(courriel);
+            fr.getTf_nbLoc().setText(Integer.toString(nbcopiemax));
         }
         else{
             JOptionPane.showMessageDialog(lw,"Identifiant ou mot de passe incorrect","Login Error",JOptionPane.ERROR_MESSAGE);
@@ -67,5 +70,24 @@ public class Controleur {
             Logger.getLogger(Controleur.class.getName()).log(Level.SEVERE, null, ex);
         }
         ff.setVisible(true); 
+    }
+    
+    void louerFilm(BigDecimal idFilm){
+        String courriel = fr.getLabel_nom_utilisateur().getText();
+        int nbcopiemax = Facade.getNbCopieMax(courriel);
+        if (nbcopiemax > 0){
+            boolean loc_ok = Facade.louerFilm(courriel, idFilm);
+            if(loc_ok){
+                JOptionPane.showMessageDialog(fr,"Location OK","Location",JOptionPane.INFORMATION_MESSAGE);
+                nbcopiemax = Facade.getNbCopieMax(courriel);
+                fr.getTf_nbLoc().setText(Integer.toString(nbcopiemax));
+            }
+            else{
+                JOptionPane.showMessageDialog(fr,"Erreur lors de la location","Location",JOptionPane.ERROR_MESSAGE);
+            }
+        }
+        else {
+            JOptionPane.showMessageDialog(fr,"Vous avez atteint le nombre de location maximal","Location",JOptionPane.ERROR_MESSAGE);   
+        }
     }
 }
