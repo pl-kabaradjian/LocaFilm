@@ -6,6 +6,7 @@
 package locafilm;
 
 import java.math.BigDecimal;
+import java.util.Date;
 import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -49,6 +50,7 @@ public class DaoClient {
         else{
             Transaction tx=s.beginTransaction();
             Location l = new Location(null, c, copie);
+            l.setDatelocation(new Date());
             s.saveOrUpdate(l);
             tx.commit();
             s.close();

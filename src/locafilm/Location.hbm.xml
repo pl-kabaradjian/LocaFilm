@@ -17,7 +17,7 @@
             <column name="NUMEROCOPIE" precision="22" scale="0" not-null="true" />
         </many-to-one>
         <property name="datelocation" type="date">
-            <column name="DATELOCATION" length="7" />
+            <column name="DATELOCATION" length="7" not-null="true" default="SYSDATE" />
         </property>
         <property name="dateretour" type="date">
             <column name="DATERETOUR" length="7" />
