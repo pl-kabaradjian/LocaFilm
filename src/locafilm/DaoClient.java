@@ -8,6 +8,7 @@ package locafilm;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -65,7 +66,13 @@ public class DaoClient {
     }
 
     static int getCurrNbLoc(Client c) {
-        int currentNbLoc = c.getLocations().toArray().length;
+        int currentNbLoc = 0;
+        //c.getLocations().toArray().length;
+        Set<Location> locs = c.getLocations();
+        
+        for (Location l : locs){
+            if(l.getDateretour() == null) currentNbLoc++;
+        }
 
         return currentNbLoc;
     }

@@ -218,12 +218,13 @@ public class FrameRecherche extends javax.swing.JFrame {
     private void bouton_louerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bouton_louerActionPerformed
         BigDecimal idFilm = new BigDecimal("1");
         List<Film> listFilm = Facade.getListeFilm();
-        String titre = jList1.getSelectedValue();
+        String filmtitre = jList1.getSelectedValue();
+        String titre=filmtitre.substring(0,filmtitre.length()-7);
         
         for(Film f : listFilm)
         {
             if(f.getTitre().equalsIgnoreCase(titre))
-                idFilm=f.getIdfilm();
+                idFilm=f.getIdfilm();         
         }
         
         c.louerFilm(idFilm);

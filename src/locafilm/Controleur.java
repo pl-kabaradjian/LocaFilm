@@ -83,7 +83,7 @@ public class Controleur {
                 fr.getTf_nbLoc().setText(Integer.toString(nbcopiemax));
             }
             else{
-                JOptionPane.showMessageDialog(fr,"Erreur lors de la location","Location",JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(fr,"Plus de copies disponibles","Location",JOptionPane.ERROR_MESSAGE);
             }
         }
         else {
